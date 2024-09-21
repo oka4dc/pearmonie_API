@@ -1,3 +1,34 @@
 env
+# Python
+*.py[cod]
+__pycache__/
+*.so
+
+# Django
+db.sqlite3
+media/
+
+# Logs
+*.log
+logs/
+
+# Virtualenv
+env/
+
+
+# Django static files
+staticfiles/
+
+# Environment variables
+.env
+
+# Docker
+*.pid
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
 
 
