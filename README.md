@@ -1,4 +1,4 @@
-# E-commerce API
+# Pearmonie E-commerce API
 
 An e-commerce API built with Django and Django REST Framework (DRF) that supports product management, user authentication, and order processing.
 
@@ -16,7 +16,7 @@ An e-commerce API built with Django and Django REST Framework (DRF) that support
 ## Installation
 
 ### Prerequisites
-- Python 3.11
+- Python 3.10.12
 - Django
 - Django REST Framework
 - PostgreSQL
