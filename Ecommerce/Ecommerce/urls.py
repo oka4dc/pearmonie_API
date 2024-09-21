@@ -44,6 +44,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path(ROOT_API_URL+'api/', include('Order_App.urls')),
     path(ROOT_API_URL+'api/auth/', include('Users.urls')),
-    #path(ROOT_API_URL+'api/products/', include('products.urls')),
+    path(ROOT_API_URL+'api/products/', include('products.urls')),
 ]
 

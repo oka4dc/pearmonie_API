@@ -1,14 +1,52 @@
 from django.db import models
-
+from Users.models import CustomUser
 # Create your models here.
-from django.db import models
 
-class Product(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    stock = models.PositiveIntegerField()
-    
+
+
+class Category(models.Model):
+    """Define parameters for creating product catergory
+
+    Args:
+        models (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    title = models.CharField(max_length=255, null=False)
+    Description = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = 'Categories'
     def __str__(self):
-        return self.name
+        return self.title
+
+
+class Products(models.Model):
+    """_summary_
+
+    Args:
+        models (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    Name = models.CharField(max_length=100)
+    Description = models.TextField(blank=True, null=True)
+    Category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
+    Price = models.FloatField(null=False)
+    Stock = models.FloatField(null=False)
+    imageUrl = models.URLField()
+    Created_by = models.ForeignKey(CustomUser, related_name='product_owner', on_delete=models.CASCADE)
+    Updated_at = models.DateField(auto_now=True)
+    created_at = models.DateField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['created_at']
+
+    def __str__(self):
+        return '{} {}'.format(self.Price, self.name)
+
+
+
 
