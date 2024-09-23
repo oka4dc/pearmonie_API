@@ -14,7 +14,7 @@ logs/
 
 # Virtualenv
 env/
-
+AI_env
 
 # Django static files
 staticfiles/
