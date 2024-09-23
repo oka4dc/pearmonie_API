@@ -16,7 +16,8 @@ class Products(models.Model):
     Name = models.CharField(max_length=100)
     Description = models.TextField(blank=True, null=True)
     Category = models.ForeignKey(Category, related_name='products_catergory', on_delete=models.CASCADE)
-    Price = models.FloatField(null=False)
+    Price = models.DecimalField(max_digits=10, decimal_places=2), 
+    Currency = models.CharField(max_length=3, default='USD'), # Default currency is USD
     Stock = models.FloatField(null=False)
     imageUrl = models.URLField()
     Created_by = models.ForeignKey(CustomUser, related_name='product_owner', on_delete=models.CASCADE)

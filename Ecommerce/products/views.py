@@ -17,6 +17,10 @@ from products.permissions import IsSellerOrReadOnly
 #CACHE_TTL = getattr(settings, 'CACHE_TTL', settings.CACHES['default']['TIMEOUT'])
 CACHE_TIMEOUT = 60 * 5
 class ProductListCreateAPIView(generics.ListCreateAPIView):
+    """
+    handles both viewing all and creating products 
+    including permissions for both buyer and sellers users
+    """
     queryset = Products.objects.all()
     serializer_class = ProductSerializers
     permission_classes = [IsSellerOrReadOnly]  # Apply custom permission
