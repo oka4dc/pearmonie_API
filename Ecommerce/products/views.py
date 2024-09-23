@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render
-from products.models import Category, Products
+from products.models import Products
 from rest_framework import status, generics
 from rest_framework.views import APIView
-from products.serializers import CartegorySerializers,ProductSerializers
+from products.serializers import ProductSerializers
 from rest_framework.response import Response
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
@@ -43,16 +43,6 @@ class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
         serializer = self.get_serializer(product)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
-class CatergoryListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Category.objects.all()
-    serializer_class = ProductSerializers
-
-
-class CatergoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Category.objects.all()
-    serializer_class = ProductSerializers
-    lookup_field = 'id'
 """
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Products.objects.all()
