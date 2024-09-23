@@ -26,11 +26,15 @@ OXR_API_KEY = os.getenv('OXR_API_KEY')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
+# raise error if secret key is not loaded
+if not SECRET_KEY:
+    raise ValueError("The secret key environment variable is not loaded")
+
 #SECRET_KEY = 'django-insecure-s2883rx@o!4%c#12b#pjxn#f2be&v1fzi#35s66k*jq6i%ao^h
 # SECURITY WARNING: don't run with debug turned on in production!
 
-
-DEBUG = True
+# LOAD DEBUG STATUS
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
