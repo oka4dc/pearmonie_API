@@ -11,6 +11,7 @@ from rest_framework.filters import SearchFilter
 from products.pagination import CustomPagination
 from django.conf import settings
 from django.core.cache import cache
+from products.permissions import IsSellerOrReadOnly
 # Create your views here.
 
 #CACHE_TTL = getattr(settings, 'CACHE_TTL', settings.CACHES['default']['TIMEOUT'])
@@ -18,11 +19,13 @@ CACHE_TIMEOUT = 60 * 5
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductSerializers
+    permission_classes = [IsSellerOrReadOnly]  # Apply custom permission
 
 
 class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductSerializers
+    permission_classes = [IsSellerOrReadOnly]  # Apply custom permission
     lookup_field = 'id'
 
  
