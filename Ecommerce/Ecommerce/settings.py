@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-s2883rx@o!4%c#12b#pjxn#f2be&v1fzi#35s66k*jq6i%ao^h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     
     #user defined apps
     'Users',
-    "products"
+    "products",
 ]
 
 MIDDLEWARE = [
@@ -169,3 +169,5 @@ CACHES = {
 }
 
 
+# Cache timeout setting (e.g., 5 minutes)
+CACHE_TTL = 60 * 5

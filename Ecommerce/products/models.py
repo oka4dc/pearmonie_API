@@ -40,12 +40,14 @@ class Products(models.Model):
     Created_by = models.ForeignKey(CustomUser, related_name='product_owner', on_delete=models.CASCADE)
     Updated_at = models.DateField(auto_now=True)
     created_at = models.DateField(auto_now_add=True)
+    view_count = models.PositiveIntegerField(default=0)  # Track how many times the product is viewed
+    
     
     class Meta:
         ordering = ['created_at']
 
     def __str__(self):
-        return '{} {}'.format(self.Price, self.name)
+        return '{} {}'.format(self.Price, self.Name)
 
 
 
