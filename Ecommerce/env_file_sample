@@ -1,0 +1,10 @@
+DEBUG=1
+DB_NAME=mydb
+DB_USER=myuser
+DB_PASSWORD=mypassword
+DB_HOST=db
+DB_PORT=5432
+REDIS_URL=redis://redis:6379/1
+OXR_API_KEY = f1db75330fe8493e96fc8e91eae8065d
+SECRET_KEY = django-insecure-s2883rx@o!4%c#12b#pjxn#f2be&v1fzi#35s66k*jq6i%ao^h
+DEBUG = True
