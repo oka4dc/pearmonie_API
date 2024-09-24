@@ -46,6 +46,9 @@ urlpatterns = [
     path(ROOT_API_URL+'api/auth/', include('Users.urls')),
     path(ROOT_API_URL+'api/products/', include('products.urls')),
     path(ROOT_API_URL+'api/catergory/', include('catergory.urls')),
+    path(ROOT_API_URL+'api/store/', include('store.urls')),
 ]
+
+
 
 

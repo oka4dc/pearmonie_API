@@ -1,6 +1,7 @@
 from django.db import models
 from Users.models import CustomUser
 from catergory.models import Category
+from store.models import Store
 # Create your models here.
 
 
@@ -18,13 +19,13 @@ class Products(models.Model):
     Category = models.ForeignKey(Category, related_name='products_catergory', on_delete=models.CASCADE)
     Price = models.DecimalField(max_digits=10, decimal_places=2), 
     Currency = models.CharField(max_length=3, default='USD'), # Default currency is USD
-    Stock = models.FloatField(null=False)
+    quantity = models.PositiveIntegerField(null=False, default=0)
     imageUrl = models.URLField()
     Created_by = models.ForeignKey(CustomUser, related_name='product_owner', on_delete=models.CASCADE)
     Updated_at = models.DateField(auto_now=True)
     created_at = models.DateField(auto_now_add=True)
     view_count = models.PositiveIntegerField(default=0)  # Track how many times the product is viewed
-    
+    store_id = models.ForeignKey(Store, related_name="store", on_delete=models.CASCADE)
     
     class Meta:
         ordering = ['created_at']
