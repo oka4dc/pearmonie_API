@@ -7,6 +7,7 @@ from rest_framework import status, generics
 from rest_framework.views import APIView
 from store.serializers import StoreSerializers
 from rest_framework.response import Response
+from products.permissions import IsSellerOrReadOnly
 #from products.pagination import CustomPagination
 
 # Create your views here.
@@ -15,10 +16,12 @@ from rest_framework.response import Response
 class StoreListCreateAPIView(generics.ListCreateAPIView):
     queryset = Store.objects.all()
     serializer_class = StoreSerializers
+    permission_classes = [IsSellerOrReadOnly]  # Apply custom permission
 
 
 class StoreRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Store.objects.all()
     serializer_class = StoreSerializers
+    permission_classes = [IsSellerOrReadOnly]  # Apply custom permission
     lookup_field = 'id'
 

@@ -20,6 +20,8 @@ load_dotenv()
 # open exchange rate API KEY for currency covertion in real time
 OXR_API_KEY = os.getenv('OXR_API_KEY')
 
+OXR_BASE_URL = 'https://openexchangerates.org/api'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
