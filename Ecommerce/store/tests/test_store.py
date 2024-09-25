@@ -6,26 +6,20 @@ from django.contrib.auth.models import User, Group
 class UserAuthTests(APITestCase):
 
     def setUp(self):
-        self.register_url = reverse('register')  # URL for registering a user
-        self.login_url = reverse('login')        # URL for logging in
-        self.logout_url = reverse('logout')      # URL for logging out
+        self.store_create_list_url = reverse('store')  # URL for registering a user
+        self.store_url = reverse('store/<int:id>/')        # URL for logging in
 
-        # Create the user groups (buyers and sellers)
-        Group.objects.get_or_create(name='buyers')
-        Group.objects.get_or_create(name='sellers')
 
-        self.user_data = {
-                "email": "user@example.com",
-                "password": "string",
-                "username": "string",
-                "first_name": "string",
-                "last_name": "string",
-                "Role": "buyer"
-                        }
+        self.store_data = {
+              "Name": "sapa store",
+              "Description": "consumer Electronics store",
+              "Address": "Alaba"
+                            }
 
-    def test_user_registration_with_group(self):
+
+    def test_create_store(self):
         """ Test user registration and group assignment """
-        response = self.client.post(self.register_url, self.user_data, format='json')
+        response = self.client.post(self.store_create_list_url, self.store_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertIn('token', response.data)  # Ensure token is included in the response
 
