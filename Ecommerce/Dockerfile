@@ -24,9 +24,3 @@ EXPOSE 8000
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "ecommerce.wsgi:application", "--workers=3"]
 
 
-
-
-
-RUN pip install -r requirements.txt
-
-# wsgi:application"]

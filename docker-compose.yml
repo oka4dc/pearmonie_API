@@ -44,7 +44,7 @@ services:
     volumes:
       - ./ecommerce:/app
     env_file:
-      - Ecommerce/.env
+      - .
     ports:
       - "8000:8000"
     depends_on:
@@ -66,7 +66,7 @@ services:
     volumes:
       - ./recommendation:/app
     env_file:
-      - Recommendation_service/.env
+      - .
     ports:
       - "8001:8001"
     depends_on:
