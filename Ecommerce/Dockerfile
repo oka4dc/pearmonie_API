@@ -1,23 +1,32 @@
-# Base image
-FROM python:3.10-slim
+# Dockerfile for the E-commerce Service (Django + Gunicorn)
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Use an official Python runtime as a parent image
+FROM python:3.11
 
-# Set work directory
+# Set the working directory in the container
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt /app/
+# Copy the requirements file into the container
+COPY ./requirements.txt /app/requirements.txt
+
+#Update pip
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+# Install dependencies
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# Copy project files
-COPY . /app/
+# Copy the rest of the application code into the container
+COPY . /app
 
-# Expose port 8000
+# Expose the port the app runs on
 EXPOSE 8000
 
-# Run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "Ecommerce.wsgi:application"]
+# Run the gunicorn server with the Django application
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "ecommerce.wsgi:application", "--workers=3"]
+
+
+
+
+
+RUN pip install -r requirements.txt
+
+# wsgi:application"]

@@ -12,6 +12,7 @@ from products.pagination import CustomPagination
 from django.conf import settings
 from django.core.cache import cache
 from products.permissions import IsSellerOrReadOnly
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 #CACHE_TTL = getattr(settings, 'CACHE_TTL', settings.CACHES['default']['TIMEOUT'])
@@ -23,7 +24,7 @@ class ProductListAPIView(generics.ListAPIView):
     """
     queryset = Products.objects.all()
     serializer_class = ProductSerializers
-    permission_classes = [IsSellerOrReadOnly]  # Apply custom permission
+    
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
@@ -37,13 +38,13 @@ class ProductCreateview(generics.CreateAPIView):
     """
     queryset = Products.objects.all()
     serializer_class = ProductSerializers
-    permission_classes = [IsSellerOrReadOnly]  # Apply custom permission
+    permission_classes = [IsSellerOrReadOnly, IsAuthenticated]  # Apply custom permission
 
     
 class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductSerializers
-    permission_classes = [IsSellerOrReadOnly]  # Apply custom permission
+    permission_classes = [IsSellerOrReadOnly, IsAuthenticated]  # Apply custom permission
     lookup_field = 'id'
 
  
