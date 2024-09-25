@@ -1,0 +1,97 @@
+version: '3.8'
+
+# Project: Microservice E-commerce & Recommendation API
+# Author: Dennis Okafor
+# Description: A microservice architecture with DRF for e-commerce and FastAPI for recommendations.
+# Created: 2024-09-24
+
+services:
+  # PostgreSQL database service
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - microservices_network
+    labels:
+      com.project.author: "Dennis Okafor"
+      com.project.description: "PostgreSQL Database for both e-commerce and recommendation services."
+      com.project.service: "Database"
+      com.project.creation_date: "2024-09-25"
+
+  # Redis service
+  redis:
+    image: redis:alpine
+    restart: always
+    networks:
+      - microservices_network
+    labels:
+      com.project.author: "Dennis Okafor"
+      com.project.description: "Redis cache service for e-commerce API."
+      com.project.service: "Redis"
+      com.project.creation_date: "2024-09-25"
+
+  # E-commerce service (Django + Gunicorn)
+  ecommerce:
+    build:
+      context: Ecommerce/.
+    command: ["gunicorn", "--bind", "0.0.0.0:8000", "ecommerce.wsgi:application", "--workers=3"]
+    volumes:
+      - ./ecommerce:/app
+    env_file:
+      - Ecommerce/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    networks:
+      - microservices_network
+    labels:
+      com.project.author: "Dennis Okafor"
+      com.project.description: "E-commerce API using Django REST Framework with Redis caching and PostgreSQL."
+      com.project.service: "E-commerce"
+      com.project.creation_date: "2024-09-25"
+
+  # Recommendation service (FastAPI + Gunicorn)
+  recommendation:
+    build:
+      context: Recommendation_service/.
+    command: ["gunicorn", "Recommendation_service.main:app", "-w", "3", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8001"]
+    volumes:
+      - ./recommendation:/app
+    env_file:
+      - ./recommendation/.env
+    ports:
+      - "8001:8001"
+    depends_on:
+      - db
+    networks:
+      - microservices_network
+    labels:
+      com.project.author: "Dennis Okafor"
+      com.project.description: "Recommendation API using FastAPI connected to PostgreSQL."
+      com.project.service: "Recommendation"
+      com.project.creation_date: "2024-09-25"
+
+# Volumes for persistent data storage
+volumes:
+  postgres_data:
+    labels:
+      com.project.author: "Dennis Okafor"
+      com.project.description: "Volume for PostgreSQL persistent data."
+      com.project.creation_date: "2024-09-25"
+
+# Shared network for all services
+networks:
+  microservices_network:
+    driver: bridge
+    labels:
+      com.project.author: "Dennis Okafor"
+      com.project.description: "Network for e-commerce and recommendation microservices."
+      com.project.creation_date: "2024-09-25"
