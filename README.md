@@ -104,8 +104,12 @@ This project demonstrates a microservice architecture for an e-commerce platform
    ```bash
    docker-compose exec web python manage.py migrate
    ```
+5. **Run create-groups to manage users access roles**:
+   ```bash
+   docker-compose exec web python manage.py create-groups
+   ```
 
-5. **Create a superuser** (Optional):
+6. **Create a superuser** (Optional):
    ```bash
    docker-compose exec web python manage.py createsuperuser
    ```
@@ -114,7 +118,7 @@ This project demonstrates a microservice architecture for an e-commerce platform
 
 1. **Navigate to the FastAPI service directory**:
    ```bash
-   cd recommendation_service
+   cd Recommendation_service
    ```
 
 2. **Install dependencies**:
@@ -127,7 +131,7 @@ This project demonstrates a microservice architecture for an e-commerce platform
 
 3. **Run the service**:
    ```bash
-   uvicorn main:app --reload
+   fastapi run main.py
    ```
 
 Alternatively, you can use Docker:
@@ -173,7 +177,7 @@ docker run -p 8001:8000 recommendation_service
 - **Get Recommendations**:  
    GET `/recommendations/`  
    Query Parameters:
-   - `user_id`: The ID of the user for whom to generate recommendations.
+   - `product_id`: The ID of the product for whom to generate recommendations.
    - `top_n`: Number of recommendations to return (default is 5).
 
 Example:
@@ -184,7 +188,7 @@ GET http://localhost:8001/recommendations/?user_id=123&top_n=5
 Response:
 ```json
 {
-   "user_id": 123,
+   "product_id": 123,
    "recommendations": [
      {"product_id": 1, "name": "Product 1", "score": 9.5},
      {"product_id": 2, "name": "Product 2", "score": 8.7},
