@@ -35,7 +35,7 @@ if not SECRET_KEY:
 #SECRET_KEY = 'django-insecure-s2883rx@o!4%c#12b#pjxn#f2be&v1fzi#35s66k*jq6i%ao^h
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# LOAD DEBUG STATUS
+# LOAD DEBUG STATUS ....True False
 DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['*']
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    
+
     #third party apps
     'rest_framework',
     'rest_framework_simplejwt',
