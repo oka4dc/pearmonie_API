@@ -1,4 +1,4 @@
-# Pearmonie E-Commerce Microservices Architecture
+# Pearmonie E-Commerce Backend Microservices Project
 
 This project consists of two microservices:  
 1. **E-commerce Service**: Built with Django, Django REST Framework (DRF) and djangosimpleJWT, providing user registration, login, logout, and product management (CRUD).  
@@ -160,7 +160,7 @@ docker run -p 8001:8000 recommendation_service
    Request Body:
    ```json
    {
-     "username": "user",
+     "email": "user@example.com",
      "password": "pass123"
    }
    ```
