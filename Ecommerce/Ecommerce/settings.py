@@ -32,6 +32,11 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 if not SECRET_KEY:
     raise ValueError("The secret key environment variable is not loaded")
 
+RABBITMQ_HOST = os.getenv('RABBITMQ_HOST')
+RABBITMQ_PORT = os.getenv('RABBITMQ_PORT')
+RABBITMQ_USER = os.getenv('RABBITMQ_USER')
+RABBITMQ_PASS = os.getenv('RABBITMQ_PASS')
+
 #SECRET_KEY = 'django-insecure-s2883rx@o!4%c#12b#pjxn#f2be&v1fzi#35s66k*jq6i%ao^h
 # SECURITY WARNING: don't run with debug turned on in production!
 
