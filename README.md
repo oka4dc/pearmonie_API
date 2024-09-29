@@ -217,4 +217,4 @@ Response:
 | GET    | `/recommendations/`  | Get product recommendations for a user     |
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the Pearmonie License.
